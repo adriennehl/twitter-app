@@ -28,12 +28,18 @@
         
         // set tweet properties
         self.idStr = dictionary[@"id_str"];
-        self.text = dictionary[@"text"];
+        self.text = dictionary[@"full_text"];
         self.favoriteCount = [dictionary[@"favorite_count"] intValue];
         self.favorited = [dictionary[@"favorited"] boolValue];
         self.retweetCount = [dictionary[@"retweet_count"] intValue];
         self.retweeted = [dictionary[@"retweeted"] boolValue];
         
+        NSDictionary *entities = dictionary[@"entities"];
+        if (entities[@"media"]){
+            self.mediaURL = [NSURL URLWithString: entities[@"media"][0][@"media_url_https"]];
+            NSLog(@"%@", self.mediaURL);
+        }
+
         // initialize user
         NSDictionary *user = dictionary[@"user"];
         self.user = [[User alloc] initWithDictionary:user];
@@ -50,6 +56,8 @@
         formatter.timeStyle = NSDateFormatterNoStyle;
         //Convert Date to String
         self.createdAtString = [formatter stringFromDate:date];
+        // get date, month, year
+        self.date = date;
     }
     return self;
 }
@@ -60,6 +68,7 @@
     for (NSDictionary *dictionary in dictionaries) {
         Tweet * tweet = [[Tweet alloc] initWithDictionary:dictionary];
         [tweets addObject:tweet];
+        NSLog(@"%@",dictionary);
     }
     return tweets;
 }

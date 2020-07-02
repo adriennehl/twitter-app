@@ -22,7 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *favoriteLabel;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (weak, nonatomic) IBOutlet UIImageView *verifiedView;
+@property (weak, nonatomic) IBOutlet UIImageView *photoView;
 @property (nonatomic) Tweet *tweet;
+- (TweetCell*) reloadTweet:(TweetCell *)cell tweet:(Tweet *)tweet;
 
 @end
 

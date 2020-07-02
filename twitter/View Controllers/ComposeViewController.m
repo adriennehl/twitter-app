@@ -9,7 +9,7 @@
 #import "ComposeViewController.h"
 #import "APIManager.h"
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
 
 @end
@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tweetTextView.delegate = self;
     // Do any additional setup after loading the view.
 
 }
@@ -25,7 +26,7 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 - (IBAction)onTweet:(id)sender {
-    [[APIManager shared]postStatusWithText:self.tweetTextView.text completion:^(Tweet *tweet, NSError *error) {
+    [[APIManager shared]postStatusWithText:self.tweetTextView.text parameter:@"" completion:^(Tweet *tweet, NSError *error) {
         if(error){
             NSLog(@"Error composing Tweet: %@", error.localizedDescription);
         }
@@ -35,6 +36,21 @@
             [self onClose:nil];
         }
     }];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([self.tweetTextView.text isEqualToString:@"What's happening?"]){
+        textView.text = @"";
+        textView.textColor = UIColor.blackColor;
+    }
+    self.tweetTextView.canCancelContentTouches = YES;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if ([self.tweetTextView.text isEqualToString:@""]){
+        textView.text = @"What's happening?";
+        textView.textColor = UIColor.lightGrayColor;
+    }
 }
 
 /*

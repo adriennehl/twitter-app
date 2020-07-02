@@ -11,6 +11,9 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "TweetDetailViewController.h"
 
 @interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate>
 @property (nonatomic, strong) NSMutableArray  *tweets;
@@ -35,6 +38,10 @@
     [self fetchTweets];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -51,11 +58,11 @@
                 NSLog(@"%@", text);
             }
             [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
         }
         else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -66,48 +73,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     Tweet *tweet = self.tweets[indexPath.row];
-    cell.tweet = tweet;
     
-    // set cell properties
-    cell.nameLabel.text = tweet.user.name;
-    cell.handleLabel.text = tweet.user.screenName;
-    cell.dateLabel.text = tweet.createdAtString;
-    cell.tweetLabel.text = tweet.text;
-    cell.favoriteLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
-    cell.retweetLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
-    
-    // if tweet is favorited, set image and text color
-    if (tweet.favorited) {
-        [cell.favoriteButton setImage:[UIImage imageNamed: @"favor-icon-red.png"] forState:UIControlStateNormal];
-        cell.favoriteLabel.textColor = UIColor.redColor;
-    }
-    else {
-        [cell.favoriteButton setImage:[UIImage imageNamed: @"favor-icon.png"] forState:UIControlStateNormal];
-        cell.favoriteLabel.textColor = UIColor.grayColor;
-    }
-    
-    // if tweet is a retweet, set image and text color
-    if (tweet.retweeted) {
-        [cell.retweetButton setImage:[UIImage imageNamed:@"retweet-icon-green.png"] forState:UIControlStateNormal];
-        cell.retweetLabel.textColor = UIColor.greenColor;
-    }
-    else {
-        [cell.retweetButton setImage:[UIImage imageNamed:@"retweet-icon.png"] forState:UIControlStateNormal];
-        cell.retweetLabel.textColor = UIColor.grayColor;
-    }
-    
-    // if user has a profile picture, set image
-    cell.imageView.image = [UIImage imageNamed:@"camera-icon.png"];
-    if (tweet.user.propic) {
-        NSURL *url = [NSURL URLWithString:tweet.user.propic];
-        [cell.profileView setImageWithURL:url];
-    }
-    
-    cell.verifiedView.alpha = 0;
-    // if user is verified, set image
-    if ([tweet.user.verified boolValue]) {
-        cell.verifiedView.alpha = 1.0;
-    }
+    cell = [cell reloadTweet:cell tweet:tweet];
     
     return cell;
 }
@@ -117,17 +84,38 @@
     [self.tableView reloadData];
 }
 
+- (IBAction)didTapLogout:(id)sender {
+    // access app delegate
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    // create new instance of view controller in storyboard
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    // set root view controller
+    appDelegate.window.rootViewController = loginViewController;
+    // logout
+    [[APIManager shared] logout];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    UINavigationController *navigationController = [segue destinationViewController];
-    // Pass the selected object to the new view controller.
-    ComposeViewController *composeController = (ComposeViewController *)navigationController.topViewController;
-    composeController.delegate = self;
+    if([sender isKindOfClass:[UIBarButtonItem class]]){
+        // Get the new view controller using [segue destinationViewController].
+        UINavigationController *navigationController = [segue destinationViewController];
+        // Pass the selected object to the new view controller.
+        ComposeViewController *composeController = (ComposeViewController *)navigationController.topViewController;
+        composeController.delegate = self;
+    }
+    else {
+        TweetCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+       Tweet *tweet = self.tweets[indexPath.row];
+        
+        TweetDetailViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.tweet = tweet;
+    }
 }
-
-
 
 @end

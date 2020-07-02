@@ -16,7 +16,7 @@
     if (self) {
         self.name = dictionary[@"name"];
         self.screenName = dictionary[@"screen_name"];
-        self.propic = dictionary[@"profile_image_url_https"];
+        self.propic = [dictionary[@"profile_image_url_https"] stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
         self.verified = dictionary[@"verified"];
         
     }
