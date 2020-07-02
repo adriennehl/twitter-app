@@ -37,7 +37,6 @@
         NSDictionary *entities = dictionary[@"entities"];
         if (entities[@"media"]){
             self.mediaURL = [NSURL URLWithString: entities[@"media"][0][@"media_url_https"]];
-            NSLog(@"%@", self.mediaURL);
         }
 
         // initialize user
@@ -68,7 +67,6 @@
     for (NSDictionary *dictionary in dictionaries) {
         Tweet * tweet = [[Tweet alloc] initWithDictionary:dictionary];
         [tweets addObject:tweet];
-        NSLog(@"%@",dictionary);
     }
     return tweets;
 }

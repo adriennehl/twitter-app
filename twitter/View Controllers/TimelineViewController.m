@@ -53,10 +53,6 @@
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
             self.tweets = [NSMutableArray arrayWithArray:tweets];
-            for (Tweet *tweet in self.tweets) {
-                NSString *text = tweet.text;
-                NSLog(@"%@", text);
-            }
             [self.tableView reloadData];
         }
         else {

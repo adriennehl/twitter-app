@@ -23,6 +23,7 @@
 		C84A204D24AA9A9F003C234C /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = C84A204C24AA9A9F003C234C /* Tweet.m */; };
 		C84A205324AAA3B2003C234C /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C84A205224AAA3B2003C234C /* TweetCell.m */; };
 		C84A205924AAF2F5003C234C /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C84A205824AAF2F5003C234C /* ComposeViewController.m */; };
+		C86D63C924AE745100DE6D4C /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C86D63C824AE745100DE6D4C /* ProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,8 @@
 		C84A205224AAA3B2003C234C /* TweetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
 		C84A205724AAF2F5003C234C /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		C84A205824AAF2F5003C234C /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		C86D63C724AE745100DE6D4C /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		C86D63C824AE745100DE6D4C /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,8 @@
 				C82DDED324AD3264005B94F4 /* TweetDetailViewController.m */,
 				C82DDED524AD80C9005B94F4 /* ReplyViewController.h */,
 				C82DDED624AD80C9005B94F4 /* ReplyViewController.m */,
+				C86D63C724AE745100DE6D4C /* ProfileViewController.h */,
+				C86D63C824AE745100DE6D4C /* ProfileViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -291,6 +296,7 @@
 				C84A204D24AA9A9F003C234C /* Tweet.m in Sources */,
 				6AD2790620BCC0380085BC29 /* LoginViewController.m in Sources */,
 				6AD278DA20BC4B950085BC29 /* AppDelegate.m in Sources */,
+				C86D63C924AE745100DE6D4C /* ProfileViewController.m in Sources */,
 				C82DDED424AD3264005B94F4 /* TweetDetailViewController.m in Sources */,
 				6AD278F620BCB68B0085BC29 /* APIManager.m in Sources */,
 				6AD2790920BCC04D0085BC29 /* TimelineViewController.m in Sources */,
