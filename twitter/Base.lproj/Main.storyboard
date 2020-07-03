@@ -78,6 +78,7 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pGB-pc-tiN">
                                                     <rect key="frame" x="11" y="11" width="58" height="61"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="61" id="Ohr-sD-Dnf"/>
                                                         <constraint firstAttribute="width" constant="58" id="V0Z-gM-Vnh"/>
@@ -143,7 +144,7 @@
                                                     </constraints>
                                                     <state key="normal" image="retweet-icon"/>
                                                     <connections>
-                                                        <action selector="didTapRetweet:" destination="6KL-hE-3ls" eventType="touchUpInside" id="lxA-pv-QTh"/>
+                                                        <action selector="didTapRetweet:" destination="6KL-hE-3ls" eventType="touchUpInside" id="XC4-40-J48"/>
                                                     </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="739" translatesAutoresizingMaskIntoConstraints="NO" id="IMP-pr-9l6">
@@ -233,11 +234,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="mvC-3O-HjZ" id="sb0-Xv-AQe"/>
+                        <segue destination="zPD-7Q-YEF" kind="show" identifier="profileSegue" id="mch-Dm-xg3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQh-hN-GQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1660" y="36.431784107946029"/>
+            <point key="canvasLocation" x="1659.4202898550725" y="36.160714285714285"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="UnA-n5-2aU">
@@ -426,6 +428,9 @@
                                                         <constraint firstAttribute="height" constant="20" id="vIJ-Vy-0d8"/>
                                                     </constraints>
                                                     <state key="normal" image="retweet-icon"/>
+                                                    <connections>
+                                                        <action selector="didTapRetweet:" destination="FES-XW-x8c" eventType="touchUpInside" id="TWQ-sg-Lv4"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="739" translatesAutoresizingMaskIntoConstraints="NO" id="qLc-qK-9vt">
                                                     <rect key="frame" x="77" y="56.5" width="329" height="176"/>
@@ -437,6 +442,9 @@
                                                         <constraint firstAttribute="height" constant="20" id="tWd-FT-zjK"/>
                                                     </constraints>
                                                     <state key="normal" image="favor-icon"/>
+                                                    <connections>
+                                                        <action selector="didTapFavorite:" destination="FES-XW-x8c" eventType="touchUpInside" id="JYm-Ww-9nl"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -444,6 +452,7 @@
                                                 <constraint firstItem="hM3-5g-ecZ" firstAttribute="centerY" secondItem="DyN-UH-xD2" secondAttribute="centerY" id="719-Rq-MRd"/>
                                                 <constraint firstAttribute="bottom" secondItem="hM3-5g-ecZ" secondAttribute="bottom" constant="11" id="74M-VR-cNN"/>
                                                 <constraint firstItem="8q7-e2-WNm" firstAttribute="top" secondItem="qLc-qK-9vt" secondAttribute="bottom" constant="8" id="8Cp-1W-svU"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="h98-zl-UQ5" secondAttribute="trailing" constant="8" id="ENq-sQ-Pnt"/>
                                                 <constraint firstItem="hM3-5g-ecZ" firstAttribute="top" secondItem="qLc-qK-9vt" secondAttribute="bottom" constant="8" id="EfU-oS-oph"/>
                                                 <constraint firstItem="qLc-qK-9vt" firstAttribute="leading" secondItem="Hqh-c7-elJ" secondAttribute="leading" id="FhJ-3V-o6d"/>
                                                 <constraint firstItem="TKT-yk-qwU" firstAttribute="leading" secondItem="jie-xa-VDr" secondAttribute="trailing" constant="1" id="IOH-Gx-Xbf"/>
@@ -503,7 +512,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="84N-8X-iGc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2981.1594202898555" y="-745.3125"/>
+            <point key="canvasLocation" x="3061" y="-723"/>
         </scene>
         <!--Timelines-->
         <scene sceneID="WUT-Ke-VeR">
@@ -612,6 +621,7 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jsM-dV-tCT">
                                                 <rect key="frame" x="11" y="11" width="58" height="58"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="58" id="1gx-pC-X4Z"/>
                                                     <constraint firstAttribute="height" constant="58" id="tDJ-bX-0DP"/>
@@ -798,7 +808,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kgi-S9-jdj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2453.5999999999999" y="36.431784107946029"/>
+            <point key="canvasLocation" x="2412" y="35"/>
         </scene>
         <!--Reply View Controller-->
         <scene sceneID="HLN-VW-QHd">
@@ -878,7 +888,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wN1-cH-D4E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3371.0144927536235" y="36.830357142857139"/>
+            <point key="canvasLocation" x="2412" y="892"/>
         </scene>
         <!--Me-->
         <scene sceneID="dZF-1u-BOp">
@@ -901,7 +911,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="V4c-Vf-eHZ"/>
+        <segue reference="Mq0-xC-ItX"/>
+        <segue reference="mch-Dm-xg3"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="TwitterLogoBlue" width="200" height="200"/>

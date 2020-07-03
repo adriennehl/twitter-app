@@ -68,8 +68,8 @@
     // if user has a profile picture, set image
     self.profileView.image = [UIImage imageNamed:@"camera-icon.png"];
     self.profileView.layer.cornerRadius = self.profileView.frame.size.width / 2;
-    if (self.tweet.user.propic) {
-        NSURL *url = [NSURL URLWithString:self.tweet.user.propic];
+    if (self.tweet.user.profilePic) {
+        NSURL *url = [NSURL URLWithString:self.tweet.user.profilePic];
         [self.profileView setImageWithURL:url];
     }
     

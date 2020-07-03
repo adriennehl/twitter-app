@@ -17,6 +17,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    // configure tap gesture recognizer
+    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
+    [self.profileView addGestureRecognizer:profileTapGestureRecognizer];
+    [self.profileView setUserInteractionEnabled:YES];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -30,7 +35,7 @@
     cell.tweet = tweet;
     cell.nameLabel.text = tweet.user.name;
     cell.handleLabel.text = tweet.user.screenName;
-//    cell.dateLabel.text = tweet.createdAtString;
+    //    cell.dateLabel.text = tweet.createdAtString;
     cell.tweetLabel.text = tweet.text;
     cell.favoriteLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
     cell.retweetLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
@@ -61,8 +66,8 @@
     // if user has a profile picture, set image
     cell.profileView.image = [UIImage imageNamed:@"camera-icon.png"];
     cell.profileView.layer.cornerRadius = cell.profileView.frame.size.width / 2;
-    if (tweet.user.propic) {
-        NSURL *url = [NSURL URLWithString:tweet.user.propic];
+    if (tweet.user.profilePic) {
+        NSURL *url = [NSURL URLWithString:tweet.user.profilePic];
         [cell.profileView setImageWithURL:url];
     }
     
@@ -163,6 +168,12 @@
             }
         }];
     }
+}
+
+// when user taps on proile
+- (void)didTapUserProfile:(UITapGestureRecognizer *)sender {
+   // call method on delegate
+    [self.delegate tweetCell:self didTap:self.tweet.user];
 }
 
 @end

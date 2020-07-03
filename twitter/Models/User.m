@@ -14,9 +14,13 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self) {
+        self.userID = dictionary[@"id_str"];
         self.name = dictionary[@"name"];
         self.screenName = dictionary[@"screen_name"];
-        self.propic = [dictionary[@"profile_image_url_https"] stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+        self.profilePic = [dictionary[@"profile_image_url_https"] stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+        self.backdropPic = dictionary[@"profile_banner_url"];
+        self.friendsCount = [NSString stringWithFormat:@"%@",  dictionary[@"friends_count"]];
+        self.followersCount = [NSString stringWithFormat:@"%@", dictionary[@"followers_count"]];
         self.verified = dictionary[@"verified"];
         
     }

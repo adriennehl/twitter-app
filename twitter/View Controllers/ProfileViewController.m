@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *followingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followersLabel;
 @property (weak, nonatomic) IBOutlet UITableView *profileTableView;
-@property (nonatomic, strong) NSDictionary *userDictionary;
 @property (nonatomic, strong) NSMutableArray *tweets;
 
 @end
@@ -37,11 +36,26 @@
     self.profileTableView.dataSource = self;
     self.profileTableView.delegate = self;
     
-    // get user data
+    // if user is nil, get user data
+    if(!self.user) {
+        [self getUser];
+    }
+    else {
+        [self loadUserData];
+        [self fetchTweets];
+    }
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self.profileTableView reloadData];
+}
+
+- (void)getUser{
     [[APIManager shared] getUserWithCompletion:^(NSDictionary *userDictionary, NSError *error) {
         if (userDictionary) {
             NSLog(@"😎😎😎 Successfully loaded user");
-            self.userDictionary = userDictionary;
+            self.user = [[User alloc] initWithDictionary:userDictionary];
             [self loadUserData];
             // load user tweets
             [self fetchTweets];
@@ -52,13 +66,9 @@
     }];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [self.profileTableView reloadData];
-}
-
 - (void)fetchTweets {
     // Get timeline
-    NSString *user_id = self.userDictionary[@"id_str"];
+    NSString *user_id = self.user.userID;
     [[APIManager shared] getUserStatuses:user_id completion:^(NSMutableArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded statuses");
@@ -72,26 +82,24 @@
 }
 
 - (void) loadUserData {
-    self.nameLabel.text = self.userDictionary[@"name"];
-    self.handleLabel.text = self.userDictionary[@"screen_name"];
-    self.followingLabel.text = [NSString stringWithFormat:@"%@",  self.userDictionary[@"friends_count"]];
-    self.followersLabel.text = [NSString stringWithFormat:@"%@", self.userDictionary[@"followers_count"]];
+    self.nameLabel.text = self.user.name;
+    self.handleLabel.text = self.user.screenName;
+    self.followingLabel.text = self.user.friendsCount;
+    self.followersLabel.text = self.user.followersCount;
+    
     // if user has a profile picture, set image
     self.profileView.image = [UIImage imageNamed:@"camera-icon.png"];
     self.profileView.layer.cornerRadius = self.profileView.frame.size.width / 2;
-    if (self.userDictionary[@"default_profile_image"]!=0) {
-        NSString *profileURL = self.userDictionary[@"profile_image_url_https"];
-        NSString *propic = [profileURL stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
-        NSURL *url = [NSURL URLWithString:propic];
+    if (self.user.profilePic) {
+        NSURL *url = [NSURL URLWithString:self.user.profilePic];
         [self.profileView setImageWithURL:url];
     }
     
-    // if user has a backdrop picture, set image
-     self.backdropView.image = [UIImage imageNamed:@"camera-icon.png"];
-    if(self.userDictionary[@"profile_banner_url"]) {
-        NSString *backdropPath = self.userDictionary[@"profile_banner_url"];
-        NSURL *backdropURL = [NSURL URLWithString:backdropPath];
-        [self.backdropView setImageWithURL:backdropURL];
+    // if user has a banner picture, set image
+    self.backdropView.image = [UIImage imageNamed:@"camera-icon.png"];
+    if (self.user.backdropPic) {
+        NSURL *url = [NSURL URLWithString:self.user.backdropPic];
+        [self.backdropView setImageWithURL:url];
     }
 }
 

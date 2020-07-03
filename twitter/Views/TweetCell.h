@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
+#import "User.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+// declare protocol
+@protocol TweetCellDelegate;
 
 @interface TweetCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *profileView;
@@ -25,6 +29,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
 @property (nonatomic) Tweet *tweet;
 - (TweetCell*) reloadTweet:(TweetCell *)cell tweet:(Tweet *)tweet;
+@property (nonatomic, weak) id<TweetCellDelegate> delegate;
+
+@end
+
+// define protocol
+@protocol TweetCellDelegate
+// required methods
+- (void)tweetCell:(TweetCell *) tweetCell didTap: (User *)user;
 
 @end
 

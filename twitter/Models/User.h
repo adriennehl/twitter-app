@@ -11,10 +11,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface User : NSObject
+@property (nonatomic, strong) NSString *userID;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *screenName;
-@property (nonatomic, strong) NSString *propic;
+@property (nonatomic, strong) NSString *profilePic;
+@property (nonatomic, strong) NSString *backdropPic;
 @property (nonatomic) NSNumber *verified;
+@property (nonatomic, strong) NSString *friendsCount;
+@property (nonatomic, strong) NSString *followersCount;
 
 // create initialize
 - (instancetype) initWithDictionary: (NSDictionary*)dictionary;

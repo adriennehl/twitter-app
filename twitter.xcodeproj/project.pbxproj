@@ -123,8 +123,8 @@
 			children = (
 				6AD278F420BCB68B0085BC29 /* APIManager.h */,
 				6AD278F520BCB68B0085BC29 /* APIManager.m */,
-				6AD278F120BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.h */,
 				6AD278F220BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.m */,
+				6AD278F120BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.h */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -160,10 +160,10 @@
 				C84A205824AAF2F5003C234C /* ComposeViewController.m */,
 				C82DDED224AD3264005B94F4 /* TweetDetailViewController.h */,
 				C82DDED324AD3264005B94F4 /* TweetDetailViewController.m */,
-				C82DDED524AD80C9005B94F4 /* ReplyViewController.h */,
-				C82DDED624AD80C9005B94F4 /* ReplyViewController.m */,
 				C86D63C724AE745100DE6D4C /* ProfileViewController.h */,
 				C86D63C824AE745100DE6D4C /* ProfileViewController.m */,
+				C82DDED624AD80C9005B94F4 /* ReplyViewController.m */,
+				C82DDED524AD80C9005B94F4 /* ReplyViewController.h */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
