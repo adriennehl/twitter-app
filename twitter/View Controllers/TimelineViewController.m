@@ -51,10 +51,10 @@
 
 - (void)fetchTweets {
     // Get timeline
-    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+    [[APIManager shared] getHomeTimelineWithCompletion:^(NSMutableArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
-            self.tweets = [NSMutableArray arrayWithArray:tweets];
+            self.tweets = tweets;
             [self.tableView reloadData];
         }
         else {

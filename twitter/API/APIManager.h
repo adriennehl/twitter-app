@@ -14,7 +14,7 @@
 
 + (instancetype)shared;
 
-- (void)getHomeTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion;
+- (void)getHomeTimelineWithCompletion:(void(^)(NSMutableArray *tweets, NSError *error))completion;
 
 // method to post tweet
 - (void)postStatusWithText:(NSString *)text parameter:(NSString *)idStr completion:(void (^)(Tweet *, NSError *))completion;
@@ -24,6 +24,9 @@
 
 // method to get user statuses
 - (void)getUserStatuses:(NSString *) user_id completion: (void(^)(NSMutableArray *tweets, NSError *error))completion;
+
+// method to get user mentions
+- (void)getUserMentions:(void(^)(NSMutableArray *tweets, NSError *error))completion;
 
 // method to favorite tweet
 - (void)favorite:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion;
