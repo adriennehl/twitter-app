@@ -2,7 +2,7 @@
 
 **Twitter** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **13** hours spent in total
+Time spent: **21** hours spent in total
 
 ## User Stories
 
@@ -36,7 +36,7 @@ The following **stretch** features are implemented:
 - [x] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
 - [x] User can reply to any tweet, and replies should be prefixed with the username and the reply_id should be set when posting the tweet (**2 points**)
 - [x] User sees embedded images in tweet if available
-- [ ] User can switch between timeline, mentions, or profile view through a tab bar (**3 points**)
+- [x] User can switch between timeline, mentions, or profile view through a tab bar (**3 points**)
 - [ ] Profile Page: pulling down the profile page should blur and resize the header image. (**4 points**)
 
 
@@ -53,19 +53,33 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+##  Login, Launch, and Logout
+<img src='http://g.recordit.co/9JmRO4ONTH.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+## Timeline Tab (Refresh, Retweet/Unretweet, Favorite/Unfavorite)
+<img src='http://g.recordit.co/zquXoanqQx.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://g.recordit.co/AAiad48gmd.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+## Compose a New Tweet, Reply, Autolayout
+<img src='http://g.recordit.co/nhAI3iaFsc.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+## Tweet details page
+<img src='http://g.recordit.co/TjDuxBFyKV.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+## View own profile and other users
+<img src='http://g.recordit.co/wcbgtse5oz.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [RecordIt](https://recordit.co/).
 
 ## Notes
-
-Describe any challenges encountered while building the app.
+Figuring out how to make requests was challenging since we were making a lot of different requests. I also spent more time on modularizing the app, which was helpful in not having to repeat lots of code.  
 
 ## Credits
 
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
+- Twitter API
 
 ## License
 
